@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error-container":"#93000a","error":"#ba1a1a","primary":"#3525cd","secondary-fixed-dim":"#bec6e0","on-primary-container":"#dad7ff","primary-container":"#4f46e5","surface-container":"#e5eeff","inverse-on-surface":"#eaf1ff","tertiary-fixed":"#e1e0ff","on-background":"#0b1c30","on-tertiary-fixed":"#07006c","on-tertiary-fixed-variant":"#2f2ebe","tertiary-fixed-dim":"#c0c1ff","on-secondary-container":"#5c647a","surface-container-lowest":"#ffffff","on-surface-variant":"#464555","surface":"#f8f9ff","surface-container-high":"#dce9ff","error-container":"#ffdad6","primary-fixed":"#e2dfff","tertiary":"#3130c0","outline":"#777587","secondary-fixed":"#dae2fd","on-tertiary-container":"#d9d8ff","on-surface":"#0b1c30","tertiary-container":"#4b4dd8","on-secondary":"#ffffff","surface-container-highest":"#d3e4fe","background":"#f8f9ff","on-error":"#ffffff","on-secondary-fixed":"#131b2e","primary-fixed-dim":"#c3c0ff","inverse-primary":"#c3c0ff","secondary-container":"#dae2fd","on-secondary-fixed-variant":"#3f465c","surface-tint":"#4d44e3","surface-bright":"#f8f9ff","surface-container-low":"#eff4ff","on-tertiary":"#ffffff","outline-variant":"#c7c4d8","surface-variant":"#d3e4fe","surface-dim":"#cbdbf5","inverse-surface":"#213145","on-primary-fixed-variant":"#3323cc","on-primary":"#ffffff","secondary":"#565e74","on-primary-fixed":"#0f0069"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter-sm":"0.75rem","margin-desktop":"2rem","space-sm":"0.5rem","gutter":"1.25rem","gutter-lg":"1.5rem","space-lg":"1.25rem","space-xl":"2rem","space-xs":"0.25rem","margin-mobile":"1rem","margin":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-sm":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],"body-lg":["Inter"],"code-sm":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"code-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest flex flex-col justify-between z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="p-space-md border-b border-surface-container-low"><div class="flex items-center gap-space-sm mb-space-sm"><img alt="ShopPilot Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WLw5Uf_usC-2ylZQhmx906-urTwlshjKn8dpkMt-l2ueVDWWdZIKK9vjOSnqEMt6nXbaTvfk09SjcmW6wo7qKcUlBF9llPFXjyeRcnd8hUYn06vmHWFa4Q7mzPXF7UdWm1s2MJIVHLrqhfHyEd0ogiyLt6rgFtJFxkRz_mfoSFi4baRfFmlOaOQSzhog6FpCaCpFdAJUigVPJT5Zsg_QMZB8cVM7y6bAwWSoiDYlEmOJsI_zv8RAi5nnOR"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">ShopPilot</span></div><button class="w-full flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl text-left hover:bg-surface-container transition-colors" type="button"><div class="flex items-center gap-space-sm min-w-0"><span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span><div class="truncate"><p class="font-label-md text-label-md text-on-surface font-medium truncate leading-tight">Northstar Goods</p><p class="font-label-sm text-label-sm text-on-surface-variant truncate">US Store</p></div></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">unfold_more</span></button></div><div class="px-space-md pt-space-md pb-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider px-space-sm">Operations</span></div><nav class="px-space-sm space-y-0.5" data-active-classes="bg-primary-container text-on-primary font-medium rounded-xl"><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="overview" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="orders" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Orders</span></div><span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-semibold">12</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="products" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span>Products</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm transition-all bg-primary-container text-on-primary font-medium rounded-xl" data-path="inventory" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">warehouse</span><span>Inventory</span></div><span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container font-semibold">3</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="customers" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="marketing" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">campaign</span><span>Marketing</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="analytics" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">query_stats</span><span>Analytics</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="settings" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></div></a></nav></div><div class="p-space-md border-t border-surface-container-low bg-surface-container-lowest"><div class="flex items-center justify-between mb-space-sm"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Syncing Live</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">Scale Tier</span></div><div class="space-y-1"><div class="flex justify-between items-center font-body-sm text-body-sm text-on-surface-variant"><span class="font-label-sm text-label-sm">API &amp; Storage</span><span class="font-code-sm text-code-sm">84%</span></div><div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-primary rounded-full" style="width: 84%;"></div></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-sm font-label-md text-label-md text-on-surface-variant"><img alt="ShopPilot Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WLw5Uf_usC-2ylZQhmx906-urTwlshjKn8dpkMt-l2ueVDWWdZIKK9vjOSnqEMt6nXbaTvfk09SjcmW6wo7qKcUlBF9llPFXjyeRcnd8hUYn06vmHWFa4Q7mzPXF7UdWm1s2MJIVHLrqhfHyEd0ogiyLt6rgFtJFxkRz_mfoSFi4baRfFmlOaOQSzhog6FpCaCpFdAJUigVPJT5Zsg_QMZB8cVM7y6bAwWSoiDYlEmOJsI_zv8RAi5nnOR"/><span class="hover:text-on-surface cursor-pointer">Northstar Goods</span><span class="material-symbols-outlined text-[16px]">chevron_right</span><span class="text-on-surface font-semibold">Operations Hub</span></div><div class="flex-1 max-w-lg mx-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px]">search</span><input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md pl-10 pr-12 py-1.5 rounded-xl border border-outline-variant/40 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all" placeholder="Search orders, products, customers (Cmd+K)" type="text"/><kbd class="absolute right-3 font-code-sm text-code-sm bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant/60 text-on-surface-variant">⌘K</kbd></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-space-md py-1.5 bg-surface-container-low rounded-xl text-on-surface font-label-md text-label-md cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span><span>Last 30 Days (Oct 1 - Oct 30)</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="Help" type="button"><span class="material-symbols-outlined text-[20px]">help_outline</span></button><button class="relative w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-surface-container-high mx-space-xs"></div><div class="flex items-center gap-space-sm pl-space-xs cursor-pointer"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM3dTP-YlP1SggZsI8IlQaHvd6-pgWatRqxE6UnfnBTfokMiEgtaCM3iUZRsi1LEl-41pulOJr0a8XK43POgY6A5kakBggjj27WMyi6lYaC8K321cnkL2Y8R1Fvush8HIFQlh-COQt-pBKKMB44byyGGkYild2hg3MoE2Ddh8EEIkQM2zfv_Zc6eX5t05tnzoPM2a3FsX9IIlKrCk--8KhGhnc4HOH_mHhkZzaLbthGwPxHf0TGMGJXg"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-surface-container-lowest"></span></div><div class="text-left"><p class="font-label-md text-label-md text-on-surface font-medium leading-none">Elena Rostova</p><p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 leading-none">Head of Operations</p></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="p-space-lg space-y-space-lg max-w-[1600px] mx-auto w-full">
+<!-- Top Action & Title Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Inventory &amp; Stock Operations</h1>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-code-sm text-code-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Live Sync: 3 Hubs
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time multi-location stock tracking across US-West, US-East, and 3PL Fulfillment hubs.</p>
+</div>
+<div class="flex items-center flex-wrap gap-space-sm">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 bg-surface-container-lowest text-on-surface rounded-xl shadow-sm hover:bg-surface-container-low transition-colors font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">file_download</span>
+<span>Export Stock Sheet</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 bg-surface-container-lowest text-on-surface rounded-xl shadow-sm hover:bg-surface-container-low transition-colors font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">cached</span>
+<span>Cycle Count Batch</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-space-lg py-2 bg-primary-container text-on-primary rounded-xl shadow-sm hover:bg-primary transition-all font-label-md text-label-md" onclick="document.getElementById('adjustment-drawer').classList.remove('translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('hidden');" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Adjust Stock</span>
+</button>
+</div>
+</div>
+<!-- Summary KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Valuation -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Valuation</p>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-1">$642,850.00</p>
+</div>
+<span class="p-2 bg-surface-container-low rounded-xl text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</span>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Across 412 active SKUs</span>
+<span class="inline-flex items-center gap-0.5 text-on-secondary-fixed-variant font-code-sm text-code-sm bg-secondary-container px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +3.8%
+          </span>
+</div>
+</div>
+<!-- In-Stock Units -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">In-Stock Units</p>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-1">14,820</p>
+</div>
+<span class="p-2 bg-surface-container-low rounded-xl text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">inventory</span>
+</span>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">94.2% healthy levels</span>
+<div class="w-20 bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 94.2%;"></div>
+</div>
+</div>
+</div>
+<!-- Low Stock Warnings -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Low Stock Warnings</p>
+<p class="font-headline-lg text-headline-lg text-on-surface mt-1">14 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">SKUs</span></p>
+</div>
+<span class="p-2 bg-secondary-container rounded-xl text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</span>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Reorder trigger reached</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold hover:underline cursor-pointer">Generate POs</span>
+</div>
+</div>
+<!-- Critical / Out of Stock -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Critical / Stockout</p>
+<p class="font-headline-lg text-headline-lg text-error mt-1">3 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">SKUs</span></p>
+</div>
+<span class="p-2 bg-error-container rounded-xl text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">error</span>
+</span>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-error font-medium">Lost rev: ~$2,400/day</span>
+<span class="font-code-sm text-code-sm bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-semibold">Urgent</span>
+</div>
+</div>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-on-surface-variant/60" id="inventory-search" placeholder="Search SKU, product title, barcode..." type="text"/>
+</div>
+<!-- Filter Controls Group -->
+<div class="flex items-center flex-wrap gap-space-sm">
+<!-- Hub Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md px-3 py-2 pr-8 rounded-xl focus:outline-none transition-colors cursor-pointer">
+<option>All Warehouses (3)</option>
+<option>US-West Primary (Reno, NV)</option>
+<option>US-East Depot (Allentown, PA)</option>
+<option>Apex 3PL Gateway (Dallas, TX)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<!-- Category Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md px-3 py-2 pr-8 rounded-xl focus:outline-none transition-colors cursor-pointer">
+<option>All Categories</option>
+<option>Apparel</option>
+<option>Home &amp; Living</option>
+<option>Accessories</option>
+<option>Electronics</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<!-- Stock Health Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md px-3 py-2 pr-8 rounded-xl focus:outline-none transition-colors cursor-pointer">
+<option>Stock Status: All</option>
+<option>Healthy (In Stock)</option>
+<option>Low Stock / Threshold</option>
+<option>Out of Stock</option>
+<option>Incoming In-Transit</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<button class="w-9 h-9 rounded-xl flex items-center justify-center bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors" title="Filter presets" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Inventory Data Table Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/70 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md font-semibold">Product &amp; Variant</th>
+<th class="py-3 px-space-md font-semibold">SKU / Barcode</th>
+<th class="py-3 px-space-md font-semibold">Category</th>
+<th class="py-3 px-space-md font-semibold">Warehouse Hub</th>
+<th class="py-3 px-space-md text-right font-semibold">Available</th>
+<th class="py-3 px-space-md text-right font-semibold">Reserved</th>
+<th class="py-3 px-space-md text-right font-semibold">Incoming</th>
+<th class="py-3 px-space-md text-right font-semibold">Reorder Pt</th>
+<th class="py-3 px-space-md font-semibold">Stock Health</th>
+<th class="py-3 px-space-md font-semibold">Last Restocked</th>
+<th class="py-3 px-space-md text-center font-semibold">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-md text-body-md text-on-surface">
+<!-- Row 1: Merino Wool Knit Overshirt (Selected Item) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors bg-surface-container-low/20">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md min-w-[240px]">
+<img class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="Close up studio photograph of high quality heather grey merino wool knit overshirt neatly folded against a clean minimalist light grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRy13LMoGwK9VEM3xhOt78WzGDnJG7mSd8mcPAB-j79UuuXvpLuz6TpnQYiEn5Iei0GInMcMDlCAo0cod3HzjbA-2PE_9GXCZKXf8rWI5cj-KX77l82gwA7MSB8lv6msBY4-aT-n83xCcV4TWnn9MqBNgrAQfDKAg96mFtHSw87_ADh7i7oe-Px-_9KTEQSou3NCphPwTY02Yg6sjM7w_CnJZbEzidMuuqpTKMDpwPxoIGKA9BJZuojA"/>
+<div class="truncate">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Merino Wool Knit Overshirt</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Heather Grey • Size M</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code-sm text-code-sm text-on-surface-variant">NW-AP-992-M</td>
+<td class="py-space-md px-space-md">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container text-on-secondary-container font-label-sm text-label-sm">Apparel</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+<span class="truncate">US-West (Reno)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-semibold text-error">4</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">2</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-medium text-primary">+50</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">15</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Critical Low
+                </span>
+</td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Sep 28, 2024</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary transition-colors" onclick="document.getElementById('adjustment-drawer').classList.remove('translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('hidden');" type="button">
+                    Adjust
+                  </button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Create Purchase Order" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="More Options" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Artisan Stoneware Pour-Over Carafe -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md min-w-[240px]">
+<img class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="Minimalist artisan stoneware ceramic pour over coffee carafe in speckled matte cream finish standing on an elegant wooden tabletop in soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgx_j_FJusMGj6CbX_phJV5z2hB2d9pP3SMCz8GcqbWRslSUCCHfZuecHZfrk-waIU588IfXhRAFUQX7XoMBIqLPjgqk8DFueiz5jSSZ6-PPqu4ZkhYQGIQKBs3iZIsH2IgjZZ_zO8ZajOK1jMTvITdCEURZFHvi8-CCjpDFliOAe8RWZXvQGjHfviIJBn5KroQx03uo4bRNNiOKAOUHfvk6t_h8lmLGOpfXLaVhrCGRHdiWSuMEHy_Q"/>
+<div class="truncate">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Artisan Stoneware Pour-Over</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Sandstone Speckle • 600ml</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code-sm text-code-sm text-on-surface-variant">NW-HM-201</td>
+<td class="py-space-md px-space-md">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container text-on-secondary-container font-label-sm text-label-sm">Home</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim flex-shrink-0"></span>
+<span class="truncate">US-East (Allentown)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-semibold text-error">2</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">0</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-medium text-primary">+40</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">10</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Critical Low
+                </span>
+</td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Oct 02, 2024</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+                    Adjust
+                  </button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Create Purchase Order" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="More Options" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Full-Grain Leather Weekender -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md min-w-[240px]">
+<img class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="Luxury handcrafted dark cognac full grain leather duffel weekender bag with solid brass hardware resting on a structured minimalist pedestal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzXQhFkz1bYElWhphuKJLWcM7f97RgXDOazOrIWR-xNRF3CCrdD3MbD6OOZQFs0YAiS6zMSuQKbfAi_8-XcZjdVhdGa8fTVOaYuAsatkhXvEO-Eqjwb2_7Ky5AR_Y9wHGxa6iRXGLkh5tLXKAChPM69HQNwohL5VEcA_OTtlosTjJzKZM8U3Z6ZC7f2AyDv1rIPLmbQuJkD-AYmTmyhJIt6a7zc0BwnwQQiAYs-APvmZ2jU5UaIrpM_Q"/>
+<div class="truncate">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Full-Grain Leather Weekender</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Cognac Tan • 45L Duffel</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code-sm text-code-sm text-on-surface-variant">NW-AC-840</td>
+<td class="py-space-md px-space-md">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container text-on-secondary-container font-label-sm text-label-sm">Accessories</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+<span class="truncate">US-West (Reno)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-semibold text-on-surface">48</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">6</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">0</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">20</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Healthy
+                </span>
+</td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Oct 14, 2024</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+                    Adjust
+                  </button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Create Purchase Order" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="More Options" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Minimalist Matte Wireless Speaker -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md min-w-[240px]">
+<img class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="High-end sleek cylindrical wireless aluminum audio speaker in matte obsidian black with refined micro-perforations and understated indicator led." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR-94Jd8l92DOsVKhstFCbnwzKiOBjNLoaqyj5lbuNh9wl7TkNyizCexC-6CB2QdLT4OVNsiJCBPq6_zXT2OmDzT9kWanE1SVjfH02O_ewCU270S5kDn4O6OLtURkDo5BbfeSNy3aEbB7wlFxn1FyxDy9EENkYaYhnsN5_phhkpCdG-Fx_mXQHCFrbMG3j-iI0N2mhcFc05Ni-5F3BbVOdEpXYB2uQ5ZkLfwZzk14jn5Pyh9R-6PeL6A"/>
+<div class="truncate">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Minimalist Matte Wireless Speaker</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Obsidian Black • Gen 2</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code-sm text-code-sm text-on-surface-variant">NW-EL-104</td>
+<td class="py-space-md px-space-md">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container text-on-secondary-container font-label-sm text-label-sm">Electronics</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim flex-shrink-0"></span>
+<span class="truncate">Apex 3PL (Dallas)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-semibold text-on-surface">112</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">14</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">0</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">30</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Healthy
+                </span>
+</td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Oct 19, 2024</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+                    Adjust
+                  </button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Create Purchase Order" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="More Options" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Raw Linen Duvet Set -->
+<tr class="hover:bg-surface-container-low/50 transition-colors bg-error-container/10">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md min-w-[240px]">
+<img class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="Natural crinkled french flax linen duvet bedding set in soft unbleached oat tone styled beautifully in a warm airy modern bedroom." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUKyKUKTBh6eZLTa5bOOYWKQyDQ0lGbyHQSRAAweEsw4rRZwNi4tLfHE0KIgx7r7y_jdOO_K_JuQ0uiYPEyZN2LroXgCzGy4IVVZA85Wx0YFlDQbF2CVdMu3nYqdiG_c9s89LsxOwOrbbr51QSsj191ntMMIwyAOP1Sg01n8k1eJ1mhLrIRhM59VPoo8UNp8m86hYO3VsFbDkHneg2arxGGe7RSIr1AcktsJ3CP3c_XLbBe2LmPTx-kA"/>
+<div class="truncate">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Raw Linen Duvet Set</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Natural Oat • Queen Size</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code-sm text-code-sm text-on-surface-variant">NW-HM-418</td>
+<td class="py-space-md px-space-md">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container text-on-secondary-container font-label-sm text-label-sm">Home</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim flex-shrink-0"></span>
+<span class="truncate">US-East (Allentown)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-bold text-error">0</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">0</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-semibold text-primary">+100</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">12</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-error text-on-error uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-error"></span> Out of Stock
+                </span>
+</td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Aug 15, 2024</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+                    Adjust
+                  </button>
+<button class="p-1 rounded text-primary hover:bg-surface-container transition-colors" title="Track Inbound Shipment" type="button">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="More Options" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Brushed Cotton Daily Tee -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-md min-w-[240px]">
+<img class="w-11 h-11 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="Heavyweight organic brushed cotton t-shirt in crisp off-white bone tone shot flat on neutral architectural background with soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiNqOqWY6NKIhZTgN5JS4IDzUwHYmMLzLNWB4WiTtKvnCzRypBckMGg_mOmuYWYkDqj9mEHjokLurTo45Hy1WILO2RCBdRTGSh_2_EWGZxX0KA9MKHqJC_dL3RVUOmFx3M-WE84U9WF0Hi0Kn4s9mn0ikJPoIxmz-EUd9YW7f8IhPMU6RzoG-VYhQkjd4GcUUPX24kzctt0JputvUEaEO6xWNfg51UgtdneBvnoO_TVmlr5rGjEeui_w"/>
+<div class="truncate">
+<p class="font-headline-sm text-headline-sm text-on-surface leading-tight truncate">Brushed Cotton Daily Tee</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Bone White • Size L</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md font-code-sm text-code-sm text-on-surface-variant">NW-AP-102-L</td>
+<td class="py-space-md px-space-md">
+<span class="inline-block px-2 py-0.5 rounded bg-surface-container text-on-secondary-container font-label-sm text-label-sm">Apparel</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+<span class="truncate">US-West (Reno)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm font-semibold text-on-surface">240</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">18</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">0</td>
+<td class="py-space-md px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">50</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-high text-on-surface uppercase font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Healthy
+                </span>
+</td>
+<td class="py-space-md px-space-md font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap">Oct 24, 2024</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+                    Adjust
+                  </button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Create Purchase Order" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="More Options" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Row Metrics -->
+<div class="p-space-md bg-surface-container-low/40 flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<div>
+          Showing <span class="font-medium text-on-surface">1 - 6</span> of <span class="font-medium text-on-surface">412</span> active SKUs
+        </div>
+<div class="flex items-center gap-space-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container disabled:opacity-40 transition-colors" disabled="" type="button">Previous</button>
+<span class="px-3 py-1 rounded bg-primary-container text-on-primary font-semibold font-code-sm text-code-sm">1</span>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container font-code-sm text-code-sm transition-colors" type="button">2</button>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container font-code-sm text-code-sm transition-colors" type="button">3</button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container font-code-sm text-code-sm transition-colors" type="button">69</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container transition-colors" type="button">Next</button>
+</div>
+</div>
+</div>
+<!-- Multi-Hub Summary Rail -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">US-West (Reno, NV)</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">Primary Hub</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Capacity: 68% utilized</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">9,240 Units</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">US-East (Allentown, PA)</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">Depot</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Capacity: 45% utilized</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">3,810 Units</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Apex 3PL (Dallas, TX)</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">3PL Partner</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Capacity: 82% utilized</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">1,770 Units</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Stock Adjustment Drawer & Backdrop -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 transition-opacity hidden" id="drawer-backdrop" onclick="document.getElementById('adjustment-drawer').classList.add('translate-x-full'); this.classList.add('hidden');"></div>
+<aside class="fixed right-0 top-0 bottom-0 w-full max-w-lg bg-surface-container-lowest shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between" id="adjustment-drawer">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-low/60 flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Adjust Inventory Stock</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Post instant ledger correction or inbound intake</p>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" onclick="document.getElementById('adjustment-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('hidden');" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Body -->
+<div class="p-space-lg flex-1 overflow-y-auto space-y-space-lg">
+<!-- Selected Item Overview Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-md">
+<img class="w-14 h-14 rounded-lg object-cover bg-surface-container flex-shrink-0 shadow-sm" data-alt="Close up studio photograph of high quality heather grey merino wool knit overshirt neatly folded against a clean minimalist light grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxnQSb77t07HIJY-DevCKEioZwBmEEETN-QwDxD4JW4urPujT4kkUr-GokxTgWP3LbPQXxNFM7MHSjEflUckf5kpganl5mYOpu5hnsqEE98yWUi3pwxc_5hoe7PxC13yRhHMGXBmiLuzdMp5_bZbcc2WQ1u5qyLqpUQ9TZi9fYWUQM89UoxJIWcrJsenCOVq8RVgRR2GpBBKFAYCI4rChTfoy5rjvBSUq-P1HYHFhbHIRnwhTJhVpQ2A"/>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<p class="font-headline-sm text-headline-sm text-on-surface truncate">Merino Wool Knit Overshirt</p>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container uppercase font-semibold">Low Stock</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Heather Grey • Medium (M)</p>
+<p class="font-code-sm text-code-sm text-on-surface-variant/80 mt-1">SKU: NW-AP-992-M</p>
+</div>
+</div>
+<!-- Current State Balances -->
+<div class="grid grid-cols-2 gap-space-sm p-space-md rounded-xl bg-surface-container-low/40">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Available On Hand</span>
+<p class="font-headline-md text-headline-md text-on-surface mt-0.5" id="current-available">4 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">units</span></p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Committed / Reserved</span>
+<p class="font-headline-md text-headline-md text-on-surface mt-0.5">2 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">units</span></p>
+</div>
+</div>
+<!-- Form Inputs -->
+<form class="space-y-space-md">
+<!-- Adjustment Type Selector -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md font-medium text-on-surface">Adjustment Type</label>
+<div class="grid grid-cols-3 gap-1 p-1 bg-surface-container-low rounded-xl">
+<button class="py-1.5 px-2 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-semibold shadow-sm text-center" type="button">Add Stock</button>
+<button class="py-1.5 px-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md text-center transition-colors" type="button">Damage / Loss</button>
+<button class="py-1.5 px-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md text-center transition-colors" type="button">Count Sync</button>
+</div>
+</div>
+<!-- Target Warehouse Hub -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md font-medium text-on-surface">Target Hub Location</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors">
+<option selected="">US-West Primary (Reno, NV)</option>
+<option>US-East Depot (Allentown, PA)</option>
+<option>Apex 3PL Gateway (Dallas, TX)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Quantity Input with Increment / Decrement -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md font-medium text-on-surface">Quantity to Add (+)</label>
+<div class="flex items-center gap-space-sm">
+<button class="w-10 h-10 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex items-center justify-center font-bold text-headline-sm transition-colors" onclick="const input = document.getElementById('adjust-qty'); const val = parseInt(input.value) || 0; if (val &gt; 1) { input.value = val - 1; updateProjected(); }" type="button">-</button>
+<input class="flex-1 text-center font-code-sm text-[18px] font-bold py-2 bg-surface-container-low rounded-xl text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20" id="adjust-qty" min="1" oninput="updateProjected()" type="number" value="25"/>
+<button class="w-10 h-10 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex items-center justify-center font-bold text-headline-sm transition-colors" onclick="const input = document.getElementById('adjust-qty'); input.value = (parseInt(input.value) || 0) + 1; updateProjected();" type="button">+</button>
+</div>
+</div>
+<!-- Reason Code Dropdown -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md font-medium text-on-surface">Reason Code</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors">
+<option selected="">Supplier Restock PO #4092</option>
+<option>Customer Return Inspection Passed</option>
+<option>Internal Warehouse Transfer In</option>
+<option>Found Inventory / Audit Correction</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Memo Note -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md font-medium text-on-surface">Operator Reference Memo <span class="font-normal text-on-surface-variant">(Optional)</span></label>
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors placeholder:text-on-surface-variant/60" placeholder="e.g., Bol #8812 pallet verified by Elena" type="text"/>
+</div>
+</form>
+<!-- Projected Impact Banner -->
+<div class="p-space-md rounded-xl bg-surface-container flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-container font-semibold">New Projected Stock</span>
+<p class="font-headline-lg text-headline-lg text-primary mt-0.5"><span id="projected-stock">29</span> <span class="font-body-sm text-body-sm text-on-surface font-normal">units available</span></p>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-semibold shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Resolves Warning
+          </span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Reorder Point: 15</p>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-space-lg bg-surface-container-low/60 flex items-center justify-end gap-space-sm">
+<button class="px-space-lg py-2.5 bg-surface-container-lowest text-on-surface rounded-xl shadow-sm hover:bg-surface-container font-label-md text-label-md transition-colors" onclick="document.getElementById('adjustment-drawer').classList.add('translate-x-full'); document.getElementById('drawer-backdrop').classList.add('hidden');" type="button">
+        Cancel
+      </button>
+<button class="px-space-lg py-2.5 bg-primary-container text-on-primary rounded-xl shadow-sm hover:bg-primary font-label-md text-label-md transition-colors flex items-center gap-1.5" onclick="confirmAdjustment()" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Confirm Stock Adjustment</span>
+</button>
+</div>
+</aside>
+<!-- Notification Toast Container -->
+<div class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50 flex items-center gap-space-md p-space-md bg-inverse-surface text-inverse-on-surface rounded-xl shadow-xl" id="toast-notification">
+<span class="material-symbols-outlined text-primary-fixed text-[24px]">task_alt</span>
+<div>
+<p class="font-headline-sm text-headline-sm text-inverse-on-surface leading-tight">Stock Updated Successfully</p>
+<p class="font-body-sm text-body-sm text-surface-container-high" id="toast-message">Added 25 units to Merino Wool Knit Overshirt.</p>
+</div>
+</div>
+<script>
+    function updateProjected() {
+      const baseStock = 4;
+      const qtyInput = document.getElementById('adjust-qty');
+      const projectedEl = document.getElementById('projected-stock');
+      const addVal = parseInt(qtyInput.value) || 0;
+      projectedEl.textContent = baseStock + addVal;
+    }
+
+    function confirmAdjustment() {
+      const drawer = document.getElementById('adjustment-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const toast = document.getElementById('toast-notification');
+      const qty = document.getElementById('adjust-qty').value;
+
+      drawer.classList.add('translate-x-full');
+      backdrop.classList.add('hidden');
+
+      document.getElementById('toast-message').textContent = 'Added ' + qty + ' units to Merino Wool Knit Overshirt (Reno Hub).';
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+  </script>
+</div></main></div></body></html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error-container":"#93000a","error":"#ba1a1a","primary":"#3525cd","secondary-fixed-dim":"#bec6e0","on-primary-container":"#dad7ff","primary-container":"#4f46e5","surface-container":"#e5eeff","inverse-on-surface":"#eaf1ff","tertiary-fixed":"#e1e0ff","on-background":"#0b1c30","on-tertiary-fixed":"#07006c","on-tertiary-fixed-variant":"#2f2ebe","tertiary-fixed-dim":"#c0c1ff","on-secondary-container":"#5c647a","surface-container-lowest":"#ffffff","on-surface-variant":"#464555","surface":"#f8f9ff","surface-container-high":"#dce9ff","error-container":"#ffdad6","primary-fixed":"#e2dfff","tertiary":"#3130c0","outline":"#777587","secondary-fixed":"#dae2fd","on-tertiary-container":"#d9d8ff","on-surface":"#0b1c30","tertiary-container":"#4b4dd8","on-secondary":"#ffffff","surface-container-highest":"#d3e4fe","background":"#f8f9ff","on-error":"#ffffff","on-secondary-fixed":"#131b2e","primary-fixed-dim":"#c3c0ff","inverse-primary":"#c3c0ff","secondary-container":"#dae2fd","on-secondary-fixed-variant":"#3f465c","surface-tint":"#4d44e3","surface-bright":"#f8f9ff","surface-container-low":"#eff4ff","on-tertiary":"#ffffff","outline-variant":"#c7c4d8","surface-variant":"#d3e4fe","surface-dim":"#cbdbf5","inverse-surface":"#213145","on-primary-fixed-variant":"#3323cc","on-primary":"#ffffff","secondary":"#565e74","on-primary-fixed":"#0f0069"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter-sm":"0.75rem","margin-desktop":"2rem","space-sm":"0.5rem","gutter":"1.25rem","gutter-lg":"1.5rem","space-lg":"1.25rem","space-xl":"2rem","space-xs":"0.25rem","margin-mobile":"1rem","margin":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-sm":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],"body-lg":["Inter"],"code-sm":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"code-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest flex flex-col justify-between z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="p-space-md border-b border-surface-container-low"><div class="flex items-center gap-space-sm mb-space-sm"><img alt="ShopPilot Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WLw5Uf_usC-2ylZQhmx906-urTwlshjKn8dpkMt-l2ueVDWWdZIKK9vjOSnqEMt6nXbaTvfk09SjcmW6wo7qKcUlBF9llPFXjyeRcnd8hUYn06vmHWFa4Q7mzPXF7UdWm1s2MJIVHLrqhfHyEd0ogiyLt6rgFtJFxkRz_mfoSFi4baRfFmlOaOQSzhog6FpCaCpFdAJUigVPJT5Zsg_QMZB8cVM7y6bAwWSoiDYlEmOJsI_zv8RAi5nnOR"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">ShopPilot</span></div><button class="w-full flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl text-left hover:bg-surface-container transition-colors" type="button"><div class="flex items-center gap-space-sm min-w-0"><span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span><div class="truncate"><p class="font-label-md text-label-md text-on-surface font-medium truncate leading-tight">Northstar Goods</p><p class="font-label-sm text-label-sm text-on-surface-variant truncate">US Store</p></div></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">unfold_more</span></button></div><div class="px-space-md pt-space-md pb-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider px-space-sm">Operations</span></div><nav class="px-space-sm space-y-0.5" data-active-classes="bg-primary-container text-on-primary font-medium rounded-xl"><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="overview" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="orders" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span>Orders</span></div><span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-semibold">12</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="products" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span>Products</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="inventory" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">warehouse</span><span>Inventory</span></div><span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container font-semibold">3</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="customers" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">group</span><span>Customers</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="marketing" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">campaign</span><span>Marketing</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-md py-space-sm transition-all bg-primary-container text-on-primary font-medium rounded-xl" data-path="analytics" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">query_stats</span><span>Analytics</span></div></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="settings" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></div></a></nav></div><div class="p-space-md border-t border-surface-container-low bg-surface-container-lowest"><div class="flex items-center justify-between mb-space-sm"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Syncing Live</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed uppercase tracking-wider font-semibold">Scale Tier</span></div><div class="space-y-1"><div class="flex justify-between items-center font-body-sm text-body-sm text-on-surface-variant"><span class="font-label-sm text-label-sm">API &amp; Storage</span><span class="font-code-sm text-code-sm">84%</span></div><div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden"><div class="h-full bg-primary rounded-full" style="width: 84%;"></div></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-sm font-label-md text-label-md text-on-surface-variant"><img alt="ShopPilot Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WLw5Uf_usC-2ylZQhmx906-urTwlshjKn8dpkMt-l2ueVDWWdZIKK9vjOSnqEMt6nXbaTvfk09SjcmW6wo7qKcUlBF9llPFXjyeRcnd8hUYn06vmHWFa4Q7mzPXF7UdWm1s2MJIVHLrqhfHyEd0ogiyLt6rgFtJFxkRz_mfoSFi4baRfFmlOaOQSzhog6FpCaCpFdAJUigVPJT5Zsg_QMZB8cVM7y6bAwWSoiDYlEmOJsI_zv8RAi5nnOR"/><span class="hover:text-on-surface cursor-pointer">Northstar Goods</span><span class="material-symbols-outlined text-[16px]">chevron_right</span><span class="text-on-surface font-semibold">Operations Hub</span></div><div class="flex-1 max-w-lg mx-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[20px]">search</span><input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md pl-10 pr-12 py-1.5 rounded-xl border border-outline-variant/40 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all" placeholder="Search orders, products, customers (Cmd+K)" type="text"/><kbd class="absolute right-3 font-code-sm text-code-sm bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant/60 text-on-surface-variant">⌘K</kbd></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-space-md py-1.5 bg-surface-container-low rounded-xl text-on-surface font-label-md text-label-md cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span><span>Last 30 Days (Oct 1 - Oct 30)</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="Help" type="button"><span class="material-symbols-outlined text-[20px]">help_outline</span></button><button class="relative w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" title="Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-surface-container-high mx-space-xs"></div><div class="flex items-center gap-space-sm pl-space-xs cursor-pointer"><div class="relative"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM3dTP-YlP1SggZsI8IlQaHvd6-pgWatRqxE6UnfnBTfokMiEgtaCM3iUZRsi1LEl-41pulOJr0a8XK43POgY6A5kakBggjj27WMyi6lYaC8K321cnkL2Y8R1Fvush8HIFQlh-COQt-pBKKMB44byyGGkYild2hg3MoE2Ddh8EEIkQM2zfv_Zc6eX5t05tnzoPM2a3FsX9IIlKrCk--8KhGhnc4HOH_mHhkZzaLbthGwPxHf0TGMGJXg"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-surface-container-lowest"></span></div><div class="text-left"><p class="font-label-md text-label-md text-on-surface font-medium leading-none">Elena Rostova</p><p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 leading-none">Head of Operations</p></div><span class="material-symbols-outlined text-on-surface-variant text-[18px]">expand_more</span></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-gutter-lg py-space-xl max-w-[1600px] mx-auto w-full space-y-space-xl">
+<!-- Top Command & Filter Bar -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wider">Live Telemetry</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Updated 4 mins ago
+          </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Store Analytics &amp; Intelligence</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Consolidated commercial telemetry, cohort retention, channel acquisition efficiency, and SKU-level unit economics.
+        </p>
+</div>
+<!-- Action & Filter Group -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-lowest shadow-sm rounded-xl px-space-md py-2 gap-space-sm text-on-surface cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_month</span>
+<div class="text-left">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date Window</div>
+<div class="font-label-md text-label-md font-semibold">Oct 1 - Oct 30, 2026 <span class="font-body-sm text-on-surface-variant font-normal">vs prev 30d</span></div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant ml-1">expand_more</span>
+</div>
+<div class="flex items-center bg-surface-container-lowest shadow-sm rounded-xl px-space-md py-2 gap-space-sm text-on-surface cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">filter_alt</span>
+<div class="text-left">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Acquisition Source</div>
+<div class="font-label-md text-label-md font-semibold">All Channels (4 Active)</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant ml-1">expand_more</span>
+</div>
+<div class="flex items-center bg-surface-container-low rounded-xl p-1 shadow-sm">
+<button class="px-3 py-1.5 rounded-xl font-label-md text-label-md bg-surface-container-lowest text-on-surface font-semibold shadow-sm transition-all" type="button">Net Sales</button>
+<button class="px-3 py-1.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" type="button">Gross</button>
+</div>
+<button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-2.5 rounded-xl font-label-md text-label-md font-semibold shadow-sm hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export Dossier</span>
+</button>
+</div>
+</div>
+<!-- 4 Key Telemetry Metric Pillars -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Metric 1: Net Sales -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-fixed/20 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Net Commercial Sales</span>
+<span class="flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12.8%
+            </span>
+</div>
+<div class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight mb-space-xs">$168,430.00</div>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Gross: <strong class="text-on-surface font-semibold font-code-sm">$184,920</strong></span>
+<span class="text-on-surface-variant">Returns: <strong class="text-error font-semibold font-code-sm">-$16,490 (8.9%)</strong></span>
+</div>
+</div>
+<!-- Metric 2: Blended ROAS -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary-fixed/30 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Blended ROAS &amp; Efficiency</span>
+<span class="flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +0.4x lift
+            </span>
+</div>
+<div class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight mb-space-xs">3.82x</div>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Total Ad Outlay</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">$38,400.00</span>
+</div>
+</div>
+<!-- Metric 3: LTV & CAC -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-fixed/40 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Customer LTV (90d Cohort)</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">
+              6.4x LTV:CAC
+            </span>
+</div>
+<div class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight mb-space-xs">$284.50</div>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Blended CAC</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">$44.20 per acquisition</span>
+</div>
+</div>
+<!-- Metric 4: Repeat Rate -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-surface-container-high/60 rounded-full blur-xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Repeat Purchase Velocity</span>
+<span class="flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">north_east</span> +3.2% QoQ
+            </span>
+</div>
+<div class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight mb-space-xs">34.6%</div>
+</div>
+<div class="pt-space-md mt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Active Retention Pool</span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">4,120 customers</span>
+</div>
+</div>
+</div>
+<!-- Dual Analytics Row: Revenue Dual-Axis Chart & Channel Breakdown -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-space-lg items-stretch">
+<!-- Primary Chart: Dual Axis Sales vs Conversion (2 Cols on XL) -->
+<div class="xl:col-span-2 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Revenue &amp; Conversion Over Time</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daily gross transaction volume mapped alongside overall checkout conversion rate</p>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-primary"></span>
+<span class="text-on-surface">Gross Sales ($k)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1 bg-tertiary-container rounded"></span>
+<span class="text-on-surface">Conv Rate (%)</span>
+</div>
+</div>
+</div>
+<!-- SVG Dual-Axis Chart Container -->
+<div class="w-full relative h-72 flex flex-col justify-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 760 220">
+<!-- Grid Guides -->
+<line class="text-surface-container-high" stroke="currentColor" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="760" y1="20" y2="20"></line>
+<line class="text-surface-container-high" stroke="currentColor" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="760" y1="70" y2="70"></line>
+<line class="text-surface-container-high" stroke="currentColor" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="760" y1="120" y2="120"></line>
+<line class="text-surface-container-high" stroke="currentColor" stroke-dasharray="4,4" stroke-width="1" x1="0" x2="760" y1="170" y2="170"></line>
+<!-- Bars (Gross Sales) -->
+<!-- Day 1-15 Samples with Weekend Spikes -->
+<rect fill="#4f46e5" height="90" opacity="0.85" rx="3" width="16" x="15" y="100"></rect>
+<rect fill="#4f46e5" height="75" opacity="0.85" rx="3" width="16" x="45" y="115"></rect>
+<rect fill="#4f46e5" height="100" opacity="0.85" rx="3" width="16" x="75" y="90"></rect>
+<rect fill="#4f46e5" height="110" opacity="0.85" rx="3" width="16" x="105" y="80"></rect>
+<rect fill="#3525cd" height="145" rx="3" width="16" x="135" y="45"></rect> <!-- Weekend spike -->
+<rect fill="#3525cd" height="155" rx="3" width="16" x="165" y="35"></rect> <!-- Weekend spike -->
+<rect fill="#4f46e5" height="80" opacity="0.85" rx="3" width="16" x="195" y="110"></rect>
+<rect fill="#4f46e5" height="65" opacity="0.85" rx="3" width="16" x="225" y="125"></rect>
+<rect fill="#4f46e5" height="85" opacity="0.85" rx="3" width="16" x="255" y="105"></rect>
+<rect fill="#4f46e5" height="95" opacity="0.85" rx="3" width="16" x="285" y="95"></rect>
+<rect fill="#4f46e5" height="110" opacity="0.85" rx="3" width="16" x="315" y="80"></rect>
+<rect fill="#3525cd" height="160" rx="3" width="16" x="345" y="30"></rect> <!-- Weekend spike -->
+<rect fill="#3525cd" height="165" rx="3" width="16" x="375" y="25"></rect> <!-- Weekend spike -->
+<rect fill="#4f46e5" height="80" opacity="0.85" rx="3" width="16" x="405" y="110"></rect>
+<rect fill="#4f46e5" height="75" opacity="0.85" rx="3" width="16" x="435" y="115"></rect>
+<rect fill="#4f46e5" height="100" opacity="0.85" rx="3" width="16" x="465" y="90"></rect>
+<rect fill="#4f46e5" height="115" opacity="0.85" rx="3" width="16" x="495" y="75"></rect>
+<rect fill="#4f46e5" height="120" opacity="0.85" rx="3" width="16" x="525" y="70"></rect>
+<rect fill="#3525cd" height="170" rx="3" width="16" x="555" y="20"></rect> <!-- Major promotion weekend -->
+<rect fill="#3525cd" height="175" rx="3" width="16" x="585" y="15"></rect> <!-- Major promotion weekend -->
+<rect fill="#4f46e5" height="90" opacity="0.85" rx="3" width="16" x="615" y="100"></rect>
+<rect fill="#4f46e5" height="95" opacity="0.85" rx="3" width="16" x="645" y="95"></rect>
+<rect fill="#4f46e5" height="105" opacity="0.85" rx="3" width="16" x="675" y="85"></rect>
+<rect fill="#3525cd" height="130" rx="3" width="16" x="705" y="60"></rect>
+<rect fill="#3525cd" height="145" rx="3" width="16" x="735" y="45"></rect>
+<!-- Conversion Rate Polyline (Secondary Axis Overlay) -->
+<path d="M 23 130 
+                     Q 53 138, 83 125 
+                     T 143 85 
+                     T 173 70 
+                     T 233 135 
+                     T 293 120 
+                     T 353 60 
+                     T 413 130 
+                     T 473 110 
+                     T 533 90 
+                     T 563 45 
+                     T 593 40 
+                     T 653 110 
+                     T 713 75 
+                     T 743 65" fill="none" stroke="#3130c0" stroke-linecap="round" stroke-width="3"></path>
+<!-- Pulsing data point on peak conversion -->
+<circle cx="563" cy="45" fill="#f8f9ff" r="4.5" stroke="#3130c0" stroke-width="2.5"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="flex justify-between items-center text-on-surface-variant font-code-sm text-code-sm pt-2">
+<span>Oct 01</span>
+<span>Oct 06</span>
+<span>Oct 11 (Sat)</span>
+<span>Oct 16</span>
+<span>Oct 21</span>
+<span>Oct 25 (Sat)</span>
+<span>Oct 30</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low rounded-xl px-space-md py-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">insights</span>
+<span>Weekend customer purchase intent is <strong>41% higher</strong> than weekday baselines.</span>
+</div>
+<span class="font-code-sm text-code-sm text-primary font-semibold cursor-pointer hover:underline">Download Correlation Model →</span>
+</div>
+</div>
+<!-- Channel Acquisition Breakdown -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Acquisition Channels</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Attribution by final converted touch</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer text-[20px]">more_horiz</span>
+</div>
+<!-- Channel List -->
+<div class="space-y-space-md mt-space-md">
+<!-- Organic -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Organic Search
+                </span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">$66.5k <span class="text-on-surface-variant font-normal">(36%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 36%;"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Conv. Rate: <strong class="text-on-surface font-medium">4.2%</strong></span>
+<span>AOV: $148.00</span>
+</div>
+</div>
+<!-- Paid Ads -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span> Paid Meta &amp; Google
+                </span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">$59.1k <span class="text-on-surface-variant font-normal">(32%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 32%;"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Conv. Rate: <strong class="text-on-surface font-medium">3.1%</strong></span>
+<span>ROAS: 3.45x</span>
+</div>
+</div>
+<!-- Email & SMS -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span> Email &amp; Klaviyo SMS
+                </span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">$40.6k <span class="text-on-surface-variant font-normal">(22%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 22%;"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Conv. Rate: <strong class="text-on-surface font-medium">6.8%</strong></span>
+<span>Click-to-Open: 18.2%</span>
+</div>
+</div>
+<!-- Direct & Referral -->
+<div class="space-y-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Direct / Referral
+                </span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">$18.5k <span class="text-on-surface-variant font-normal">(10%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 10%;"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Conv. Rate: <strong class="text-on-surface font-medium">3.8%</strong></span>
+<span>Affiliate Pay: $1.2k</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Blended Conversion:</span>
+<span class="font-code-sm text-code-sm text-on-surface font-bold">4.48% (Above Benchmark)</span>
+</div>
+</div>
+</div>
+<!-- Cohort Retention Heatmap Section -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Monthly Cohort Retention Heatmap</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Percentage of first-time purchasing accounts placing secondary repeat transactions across sequential 30-day windows</p>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Retention Intensity:</span>
+<div class="flex items-center gap-1">
+<span class="w-4 h-4 rounded bg-surface-container-high" title="Low"></span>
+<span class="w-4 h-4 rounded bg-primary-fixed" title="Moderate"></span>
+<span class="w-4 h-4 rounded bg-primary-container" title="High"></span>
+<span class="w-4 h-4 rounded bg-primary" title="Maximum"></span>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface-container-low/60 rounded-xl">
+<th class="py-2.5 px-space-md rounded-l-xl">Cohort Month</th>
+<th class="py-2.5 px-space-md">New Customers</th>
+<th class="py-2.5 px-space-md text-center">Month 0</th>
+<th class="py-2.5 px-space-md text-center">Month 1</th>
+<th class="py-2.5 px-space-md text-center">Month 2</th>
+<th class="py-2.5 px-space-md text-center">Month 3</th>
+<th class="py-2.5 px-space-md text-center">Month 4</th>
+<th class="py-2.5 px-space-md text-center rounded-r-xl">Month 5</th>
+</tr>
+</thead>
+<tbody class="space-y-1">
+<!-- May -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-2.5 px-space-md font-semibold text-on-surface">May 2026</td>
+<td class="py-2.5 px-space-md font-code-sm text-code-sm text-on-surface-variant">1,420 buyers</td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">100%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-container text-on-primary font-code-sm text-code-sm">29.4%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">21.8%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">18.5%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-surface-container-high text-on-surface font-code-sm text-code-sm">16.2%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-surface-container-high text-on-surface font-code-sm text-code-sm">14.9%</div></td>
+</tr>
+<!-- Jun -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-2.5 px-space-md font-semibold text-on-surface">Jun 2026</td>
+<td class="py-2.5 px-space-md font-code-sm text-code-sm text-on-surface-variant">1,580 buyers</td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">100%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-container text-on-primary font-code-sm text-code-sm">28.1%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">22.0%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">17.9%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-surface-container-high text-on-surface font-code-sm text-code-sm">15.8%</div></td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+</tr>
+<!-- Jul -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-2.5 px-space-md font-semibold text-on-surface">Jul 2026</td>
+<td class="py-2.5 px-space-md font-code-sm text-code-sm text-on-surface-variant">1,790 buyers</td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">100%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-container text-on-primary font-code-sm text-code-sm">31.2%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">24.1%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">19.0%</div></td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+</tr>
+<!-- Aug -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-2.5 px-space-md font-semibold text-on-surface">Aug 2026</td>
+<td class="py-2.5 px-space-md font-code-sm text-code-sm text-on-surface-variant">1,640 buyers</td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">100%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-container text-on-primary font-code-sm text-code-sm">27.6%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-fixed text-on-primary-fixed font-code-sm text-code-sm font-medium">20.5%</div></td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+</tr>
+<!-- Sep -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-2.5 px-space-md font-semibold text-on-surface">Sep 2026</td>
+<td class="py-2.5 px-space-md font-code-sm text-code-sm text-on-surface-variant">1,910 buyers</td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">100%</div></td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary-container text-on-primary font-code-sm text-code-sm">33.5%</div></td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+</tr>
+<!-- Oct -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-2.5 px-space-md font-semibold text-on-surface">Oct 2026</td>
+<td class="py-2.5 px-space-md font-code-sm text-code-sm text-on-surface-variant">2,240 buyers</td>
+<td class="py-2.5 px-space-md text-center"><div class="mx-auto w-16 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">100%</div></td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40 italic">Active Window</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+<td class="py-2.5 px-space-md text-center font-code-sm text-code-sm text-on-surface-variant/40">—</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Top Performing Products by Gross Margin (Data Table & Detail Inspector) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Unit Economics: Top Products by Gross Margin</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Net contribution after cost-of-goods-sold (COGS), freight, and variable fulfillment</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-1.5 rounded-xl font-label-md text-label-md bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span> Filter Margins (&gt;50%)
+          </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface-container-low/60 rounded-xl">
+<th class="py-3 px-space-md rounded-l-xl">SKU &amp; Product Details</th>
+<th class="py-3 px-space-md text-right">Units Sold</th>
+<th class="py-3 px-space-md text-right">Net Revenue</th>
+<th class="py-3 px-space-md text-right">Gross Margin</th>
+<th class="py-3 px-space-md text-right">Return Rate</th>
+<th class="py-3 px-space-md text-center rounded-r-xl">Inventory Status</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-xl object-cover bg-surface-container-high" data-alt="Minimalist durable canvas weekender travel duffel bag in slate gray with leather accents, studio commercial lighting on clean slate podium" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW7nK-T75wpTf-IveF0Fjy4iEkZzAaexz3UwKv251cTzws5AFX3ZGnL50AalKf42jAhTvrjnYypBUeoNFs3aJxBSSXxCaLl_qQilm4KwWLv2gmZR4gSxmSutQN5Ss6cwMcHV1MQ8f6bVVE0a5Mfte8s-KpB-lInLJ6cBKAt09m54AsrhWne1eqbay5nNCU_Q-td0GFUGr0U5SeXPCGECQnggFmxYXrB4secENBNkfjqDKOUS2jcjJyFA"/>
+<div>
+<div class="font-semibold text-on-surface">The Highline Weekender Bag</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">SKU: NS-BAG-092-BLK</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">418</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">$54,340.00</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-on-primary-fixed bg-primary-fixed px-2 py-0.5 rounded-full font-bold">
+                  68.0%
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">1.2%</td>
+<td class="py-3 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 184 In Stock
+                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-xl object-cover bg-surface-container-high" data-alt="Refined tailored merino wool overshirt in dark navy blue hanging neatly against an architectural micro-cement wall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD7xCpGhxC3rPZOjcR-WBLf_NPuYg22usJyG9SC1r4afneWMVIp9x_g7N88nuXwsjMwvN-HNs0W_UqdPLXDf3ckUdbtmmH0YcVswaBEMcn5ClGUSecB6rEl8m_9GOrX6t4f4IGM84tLVI3qjehMtYy207snr6AfYnjxRZj7EVRsEw1-SpRdJxqzoY5YjKHMAVe8T8O2hBjmyNeEMCzD7f9S1khEMJhl9vHv_FH1mWh-zSB0ilSoFWopQ"/>
+<div>
+<div class="font-semibold text-on-surface">Merino Wool Utility Overshirt</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">SKU: NS-AP-771-NVY</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">324</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">$38,880.00</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-on-primary-fixed bg-primary-fixed px-2 py-0.5 rounded-full font-bold">
+                  64.2%
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">3.8%</td>
+<td class="py-3 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 78 In Stock
+                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-xl object-cover bg-surface-container-high" data-alt="Precision milled aerospace grade aluminum desktop organizer dock in matte space gray finish with subtle laser etched branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo3ar3PhMAwVESXslxbukpqZ3om-es3UDiO4jClptkHcp_Xt3sN7tz8WqF7q-D89tXwyzobYU-NZHgJhFibqPVjPeLzyFOKwhmN161g69k-iXAdUahIDt76tJUYruossrsQZu-3adTrNSOjYnisJ0Yu7il6434SOMTTxDtJmynbJMIXyUogDBgMeocsIkaAXpuc9KLBoZQHxJjfQ4xsRUgv0Kf1fuDvaziQGmeN9d478wXFO5ZhOpmlg"/>
+<div>
+<div class="font-semibold text-on-surface">Anodized Desk Caddy System</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">SKU: NS-DSK-210-ALU</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">512</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">$33,280.00</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-on-primary-fixed bg-primary-fixed px-2 py-0.5 rounded-full font-bold">
+                  61.5%
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">0.8%</td>
+<td class="py-3 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Low: 12 Units
+                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-xl object-cover bg-surface-container-high" data-alt="Premium full grain vegetal tanned leather bi-fold wallet in warm whiskey brown with contrast cream stitching" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmIpqAwli0tFu5WVSWWpLhrIR9PJlKMgu1Nt3jezogmLxs5HnE7ElHLGqCGF5PqVKWN6auIsdtN2gt-Zuhzj0xwBjSD3Lb3siOEtTcLHwXN9Ka0hcnOH56fe1tPKX9cQilXIoFeojuJKZ_rvYVgEE1vs1n4ZvEAveGuv5YyUJH7skkSPTxv68kuyyLthyBamxfNumX6GOOSphz3-g6fS4ggJvV45YNLFklPYxU5siCf32fmhtGxRsmhw"/>
+<div>
+<div class="font-semibold text-on-surface">Field Bifold Wallet</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant">SKU: NS-EDC-044-TAN</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">390</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface font-semibold">$25,350.00</td>
+<td class="py-3 px-space-md text-right">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-on-primary-fixed bg-primary-fixed px-2 py-0.5 rounded-full font-bold">
+                  59.4%
+                </span>
+</td>
+<td class="py-3 px-space-md text-right font-code-sm text-code-sm text-on-surface-variant">2.1%</td>
+<td class="py-3 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> 240 In Stock
+                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-low rounded-xl px-space-md py-space-sm flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+          Showing <span class="font-semibold text-on-surface">4 of 48</span> tracked active store catalog products
+        </div>
+<div class="flex items-center gap-space-xs font-label-md text-label-md">
+<button class="px-3 py-1 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container transition-colors disabled:opacity-50" disabled="" type="button">Previous</button>
+<span class="px-2 font-code-sm text-code-sm text-on-surface font-semibold">1 / 12</span>
+<button class="px-3 py-1 rounded-xl bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-container transition-colors" type="button">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>
