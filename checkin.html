@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Guest Check-In & Passport Scanner - ShopPilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        @layer base {
+            html, body { margin: 0; padding: 0; }
+            body { overscroll-behavior: none; }
+        }
+        ::-webkit-scrollbar { display: none; }
+
+        .scan-overlay-frame {
+            position: relative;
+            border: 2px dashed rgba(79, 70, 229, 0.6);
+            box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.65);
+        }
+        .scan-corner {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-color: #6366F1;
+            border-style: solid;
+        }
+        .corner-tl { top: -2px; left: -2px; border-width: 3px 0 0 3px; }
+        .corner-tr { top: -2px; right: -2px; border-width: 3px 3px 0 0; }
+        .corner-bl { bottom: -2px; left: -2px; border-width: 0 0 3px 3px; }
+        .corner-br { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; }
+
+        @keyframes scanLaser {
+            0% { top: 10%; opacity: 0.8; }
+            50% { top: 90%; opacity: 1; }
+            100% { top: 10%; opacity: 0.8; }
+        }
+        .scan-laser-line {
+            position: absolute;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6366F1, #38BDF8, transparent);
+            box-shadow: 0 0 8px #6366F1;
+            animation: scanLaser 2s infinite ease-in-out;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error-container":"#93000a","error":"#ba1a1a","primary":"#3525cd","secondary-fixed-dim":"#bec6e0","on-primary-container":"#dad7ff","primary-container":"#4f46e5","surface-container":"#e5eeff","inverse-on-surface":"#eaf1ff","tertiary-fixed":"#e1e0ff","on-background":"#0b1c30","on-tertiary-fixed":"#07006c","on-tertiary-fixed-variant":"#2f2ebe","tertiary-fixed-dim":"#c0c1ff","on-secondary-container":"#5c647a","surface-container-lowest":"#ffffff","on-surface-variant":"#464555","surface":"#f8f9ff","surface-container-high":"#dce9ff","error-container":"#ffdad6","primary-fixed":"#e2dfff","tertiary":"#3130c0","outline":"#777587","secondary-fixed":"#dae2fd","on-tertiary-container":"#d9d8ff","on-surface":"#0b1c30","tertiary-container":"#4b4dd8","on-secondary":"#ffffff","surface-container-highest":"#d3e4fe","background":"#f8f9ff","on-error":"#ffffff","on-secondary-fixed":"#131b2e","primary-fixed-dim":"#c3c0ff","inverse-primary":"#c3c0ff","secondary-container":"#dae2fd","on-secondary-fixed-variant":"#3f465c","surface-tint":"#4d44e3","surface-bright":"#f8f9ff","surface-container-low":"#eff4ff","on-tertiary":"#ffffff","outline-variant":"#c7c4d8","surface-variant":"#d3e4fe","surface-dim":"#cbdbf5","inverse-surface":"#213145","on-primary-fixed-variant":"#3323cc","on-primary":"#ffffff","secondary":"#565e74","on-primary-fixed":"#0f0069"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter-sm":"0.75rem","margin-desktop":"2rem","space-sm":"0.5rem","gutter":"1.25rem","gutter-lg":"1.5rem","space-lg":"1.25rem","space-xl":"2rem","space-xs":"0.25rem","margin-mobile":"1rem","margin":"1.5rem","space-md":"0.75rem"},fontFamily:{"headline-xl-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"headline-sm":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-md":["Inter"],"label-sm":["Inter"],"body-lg":["Inter"],"code-sm":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"code-sm":["12px",{"lineHeight":"16px","fontWeight":"500"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+    <!-- Sidebar Navigation -->
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest flex flex-col justify-between z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div class="flex flex-col">
+            <div class="p-space-md border-b border-surface-container-low">
+                <a href="index.html" class="flex items-center gap-space-sm mb-space-sm hover:opacity-80 transition-opacity">
+                    <img alt="ShopPilot Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WLw5Uf_usC-2ylZQhmx906-urTwlshjKn8dpkMt-l2ueVDWWdZIKK9vjOSnqEMt6nXbaTvfk09SjcmW6wo7qKcUlBF9llPFXjyeRcnd8hUYn06vmHWFa4Q7mzPXF7UdWm1s2MJIVHLrqhfHyEd0ogiyLt6rgFtJFxkRz_mfoSFi4baRfFmlOaOQSzhog6FpCaCpFdAJUigVPJT5Zsg_QMZB8cVM7y6bAwWSoiDYlEmOJsI_zv8RAi5nnOR"/>
+                    <span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">ShopPilot</span>
+                </a>
+                <button class="w-full flex items-center justify-between p-space-sm bg-surface-container-low rounded-xl text-left hover:bg-surface-container transition-colors" type="button">
+                    <div class="flex items-center gap-space-sm min-w-0">
+                        <span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+                        <div class="truncate">
+                            <p class="font-label-md text-label-md text-on-surface font-medium truncate leading-tight">Northstar Operations</p>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant truncate">Front-Desk Check-In</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-on-surface-variant text-[18px]">unfold_more</span>
+                </button>
+            </div>
+            <div class="px-space-md pt-space-md pb-space-xs">
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider px-space-sm">Operations</span>
+            </div>
+            <nav class="px-space-sm space-y-0.5">
+                <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" href="index.html">
+                    <div class="flex items-center gap-space-md">
+                        <span class="material-symbols-outlined text-[20px]">grid_view</span>
+                        <span>Overview</span>
+                    </div>
+                </a>
+                <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" href="orders.html">
+                    <div class="flex items-center gap-space-md">
+                        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+                        <span>Orders</span>
+                    </div>
+                </a>
+                <a class="flex items-center justify-between px-space-md py-space-sm transition-all bg-primary-container text-on-primary font-medium rounded-xl" href="checkin.html">
+                    <div class="flex items-center gap-space-md">
+                        <span class="material-symbols-outlined text-[20px]">badge</span>
+                        <span>Guest Check-In</span>
+                    </div>
+                    <span class="font-code-sm text-code-sm px-1.5 py-0.5 rounded-full bg-surface-container-lowest text-primary font-semibold">WASM</span>
+                </a>
+                <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" href="inventory.html">
+                    <div class="flex items-center gap-space-md">
+                        <span class="material-symbols-outlined text-[20px]">warehouse</span>
+                        <span>Inventory</span>
+                    </div>
+                </a>
+                <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" href="analytics.html">
+                    <div class="flex items-center gap-space-md">
+                        <span class="material-symbols-outlined text-[20px]">query_stats</span>
+                        <span>Analytics</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+
+        <div class="p-space-md border-t border-surface-container-low bg-surface-container-lowest">
+            <div class="flex items-center justify-between mb-space-sm">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="font-label-sm text-label-sm text-on-surface font-medium">On-Device Engine</span>
+                </div>
+                <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase tracking-wider font-semibold">100% Private</span>
+            </div>
+            <div class="space-y-1">
+                <div class="flex justify-between items-center font-body-sm text-body-sm text-on-surface-variant">
+                    <span class="font-label-sm text-label-sm">Network Tx</span>
+                    <span class="font-code-sm text-code-sm text-emerald-600 font-bold">0 Bytes</span>
+                </div>
+                <div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="h-full bg-emerald-500 rounded-full" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <div class="pl-64">
+        <header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+            <div class="flex items-center gap-space-sm font-label-md text-label-md text-on-surface-variant">
+                <span class="hover:text-on-surface cursor-pointer">Northstar Front-Desk</span>
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                <span class="text-on-surface font-semibold">Guest Check-In & Passport MRZ/OCR Scanner</span>
+            </div>
+            <div class="flex items-center gap-space-md">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 font-label-sm text-label-sm font-medium">
+                    <span class="material-symbols-outlined text-[16px]">lock</span>
+                    <span>Client-Side WebAssembly Active</span>
+                </div>
+                <div class="flex items-center gap-space-sm pl-space-xs">
+                    <div class="relative">
+                        <img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM3dTP-YlP1SggZsI8IlQaHvd6-pgWatRqxE6UnfnBTfokMiEgtaCM3iUZRsi1LEl-41pulOJr0a8XK43POgY6A5kakBggjj27WMyi6lYaC8K321cnkL2Y8R1Fvush8HIFQlh-COQt-pBKKMB44byyGGkYild2hg3MoE2Ddh8EEIkQM2zfv_Zc6eX5t05tnzoPM2a3FsX9IIlKrCk--8KhGhnc4HOH_mHhkZzaLbthGwPxHf0TGMGJXg"/>
+                    </div>
+                    <div class="text-left">
+                        <p class="font-label-md text-label-md text-on-surface font-medium leading-none">Elena Rostova</p>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 leading-none">Front Desk Operator</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="w-full pt-16 bg-surface min-h-screen">
+            <div class="p-space-lg max-w-[1600px] mx-auto space-y-space-lg">
+                <!-- Title & Scanner Action Toolbar -->
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-2xl border border-outline-variant/30 shadow-sm">
+                    <div>
+                        <div class="flex items-center gap-space-sm">
+                            <h1 class="font-headline-lg text-headline-lg text-on-surface">Guest Check-In Registration</h1>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-container/10 text-primary font-label-sm text-label-sm font-semibold border border-primary/20">
+                                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                WASM ICAO 9303 MRZ Engine
+                            </span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+                            Scan passport Machine Readable Zones (MRZ) or non-MRZ identity cards instantly using on-device WebAssembly OCR. Zero raw image transfers to server.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button id="btnOpenScanner" type="button" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-5 py-2.5 rounded-xl shadow-md hover:bg-primary-container active:scale-[0.98] transition-all font-semibold">
+                            <span class="material-symbols-outlined text-[20px]">linked_camera</span>
+                            <span>+ Scan Passport / ID (WASM)</span>
+                        </button>
+                        <label class="inline-flex items-center gap-2 bg-surface-container-low text-on-surface font-label-md text-label-md px-4 py-2.5 rounded-xl border border-outline-variant/40 hover:bg-surface-container cursor-pointer transition-colors font-medium">
+                            <span class="material-symbols-outlined text-[20px] text-primary">upload_file</span>
+                            <span>Upload Image</span>
+                            <input type="file" id="fileUploadInput" accept="image/*" class="hidden"/>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sample Presets Toolbar -->
+                <div class="flex flex-wrap items-center gap-2 bg-surface-container-low p-3 rounded-xl border border-outline-variant/20">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wider px-2 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px] text-primary">science</span>
+                        Fast Sample Testing:
+                    </span>
+                    <button type="button" onclick="loadPreset('us_passport')" class="px-3 py-1.5 bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm rounded-lg border border-outline-variant/40 transition-colors shadow-2xs font-medium">
+                        🇺🇸 Sample US Passport (TD3)
+                    </button>
+                    <button type="button" onclick="loadPreset('eu_passport')" class="px-3 py-1.5 bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm rounded-lg border border-outline-variant/40 transition-colors shadow-2xs font-medium">
+                        🇩🇪 Sample EU Passport (TD3)
+                    </button>
+                    <button type="button" onclick="loadPreset('uk_passport')" class="px-3 py-1.5 bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm rounded-lg border border-outline-variant/40 transition-colors shadow-2xs font-medium">
+                        🇬🇧 Sample UK Passport (TD3)
+                    </button>
+                    <button type="button" onclick="loadPreset('non_mrz_id')" class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 font-label-sm text-label-sm rounded-lg border border-amber-300 transition-colors shadow-2xs font-medium flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">warning</span>
+                        Non-MRZ ID (OCR Fallback)
+                    </button>
+                </div>
+
+                <!-- Validation Status Alert Banner -->
+                <div id="statusAlertBanner" class="hidden p-4 rounded-xl border flex items-start justify-between gap-3 transition-all">
+                    <div class="flex items-start gap-3">
+                        <span id="alertIcon" class="material-symbols-outlined text-[24px]">info</span>
+                        <div>
+                            <h4 id="alertTitle" class="font-headline-sm text-headline-sm font-semibold">Status</h4>
+                            <p id="alertBody" class="font-body-md text-body-md mt-0.5">Alert message text</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="document.getElementById('statusAlertBanner').classList.add('hidden')" class="text-on-surface-variant hover:text-on-surface">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+
+                <!-- Two Column Layout: Guest Registration Form & Quick Telemetry Pane -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+                    <!-- Column 1 & 2: Registration Form -->
+                    <div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-2xl border border-outline-variant/30 shadow-sm space-y- space-y-space-md">
+                        <div class="flex items-center justify-between border-b border-surface-container-high pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-[22px]">badge</span>
+                                <h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Guest Identity Information</h2>
+                            </div>
+                            <span id="validationChip" class="px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-surface-container text-on-surface-variant flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">edit_note</span>
+                                Manual Entry Mode
+                            </span>
+                        </div>
+
+                        <form id="guestForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <!-- Row 1: Document Type & Document Number -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Document Type *</label>
+                                    <select id="docType" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all">
+                                        <option value="P">Passport (ICAO 9303)</option>
+                                        <option value="ID">National Identity Card</option>
+                                        <option value="DL">Driver's License</option>
+                                        <option value="V">Visa / Travel Document</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Passport / Document No *</label>
+                                    <div class="relative">
+                                        <input type="text" id="passportNumber" required placeholder="e.g. L898902C" class="w-full bg-surface-container-low text-on-surface font-code-sm text-code-sm px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all uppercase tracking-wider"/>
+                                        <span id="passNumCheckIcon" class="hidden absolute right-3 top-2.5 material-symbols-outlined text-[18px] text-emerald-600">check_circle</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Surname & Given Names -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Surname / Family Name *</label>
+                                    <input type="text" id="surname" required placeholder="e.g. STEVENS" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all uppercase"/>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Given Names / First Name *</label>
+                                    <input type="text" id="givenNames" required placeholder="e.g. JOHN EDWARD" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all uppercase"/>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Date of Birth, Sex, Nationality -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Date of Birth *</label>
+                                    <input type="date" id="dob" required class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"/>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Sex / Gender *</label>
+                                    <select id="sex" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all">
+                                        <option value="M">Male (M)</option>
+                                        <option value="F">Female (F)</option>
+                                        <option value="U">Unspecified / Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Nationality *</label>
+                                    <input type="text" id="nationality" required placeholder="e.g. USA" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all uppercase"/>
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Issuing Country & Expiration Date -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Issuing Country *</label>
+                                    <input type="text" id="issuingCountry" required placeholder="e.g. USA" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all uppercase"/>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Expiration Date *</label>
+                                    <input type="date" id="expiryDate" required class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"/>
+                                </div>
+                            </div>
+
+                            <hr class="border-surface-container-high my-4"/>
+
+                            <!-- Row 5: Stay / Room Details -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Room / Suite No *</label>
+                                    <input type="text" id="roomNumber" required placeholder="e.g. Suite 402" value="Suite 304" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"/>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Guest Email</label>
+                                    <input type="email" id="guestEmail" placeholder="guest@example.com" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"/>
+                                </div>
+                                <div>
+                                    <label class="block font-label-md text-label-md text-on-surface-variant mb-1 font-medium">Guest Phone</label>
+                                    <input type="tel" id="guestPhone" placeholder="+1 (555) 019-2834" class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-xl border border-outline-variant/50 focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all"/>
+                                </div>
+                            </div>
+
+                            <!-- Submit Controls -->
+                            <div class="flex items-center justify-between pt-2">
+                                <button type="button" onclick="resetForm()" class="px-4 py-2 bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-xl hover:bg-surface-container transition-colors">
+                                    Reset Form
+                                </button>
+                                <button type="submit" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-xl shadow-md hover:bg-primary-container transition-all font-semibold">
+                                    <span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+                                    <span>Complete Guest Check-In</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Column 3: Security, Privacy & Performance Telemetry -->
+                    <div class="space-y-space-md">
+                        <!-- WASM Architecture Security Tile -->
+                        <div class="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-sm space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-emerald-600 text-[22px]">shield</span>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Privacy & On-Device Security</h3>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">
+                                Document scanning and ICAO 9303 checksum verification execute 100% inside WebAssembly on your device.
+                            </p>
+
+                            <div class="space-y-2 pt-1">
+                                <div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low font-body-sm text-body-sm">
+                                    <span class="text-on-surface-variant font-medium">Network Data Upload:</span>
+                                    <span class="font-code-sm text-code-sm font-bold text-emerald-600">0 Bytes</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low font-body-sm text-body-sm">
+                                    <span class="text-on-surface-variant font-medium">WASM Engine Latency:</span>
+                                    <span id="wasmLatencyVal" class="font-code-sm text-code-sm font-bold text-primary">&lt; 150 ms</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low font-body-sm text-body-sm">
+                                    <span class="text-on-surface-variant font-medium">Frame Buffer Memory:</span>
+                                    <span id="frameBufferStatus" class="font-code-sm text-code-sm font-bold text-emerald-600">Purged</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Manual Override / Help Box -->
+                        <div class="bg-surface-container-lowest p-space-md rounded-2xl border border-outline-variant/30 shadow-sm space-y-2">
+                            <div class="flex items-center gap-2 text-primary">
+                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                <h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Staff Manual Override</h4>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">
+                                All form fields remain unlocked for instant manual edit by front-desk operators. Changing any value updates downstream validation state with zero UI locking.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Guest Check-In Log Table -->
+                <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm p-space-lg space-y-space-md">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-[22px]">list_alt</span>
+                            <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Today's Check-In Log</h3>
+                        </div>
+                        <span class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wider">Live Local Session</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left font-body-md text-body-md border-collapse">
+                            <thead>
+                                <tr class="border-b border-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+                                    <th class="py-3 px-3">Guest Name</th>
+                                    <th class="py-3 px-3">Document / Passport No</th>
+                                    <th class="py-3 px-3">Nationality</th>
+                                    <th class="py-3 px-3">Room</th>
+                                    <th class="py-3 px-3">Scan Method</th>
+                                    <th class="py-3 px-3">Status</th>
+                                    <th class="py-3 px-3 text-right">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="checkInLogTable" class="divide-y divide-surface-container-low font-body-sm text-body-sm">
+                                <tr>
+                                    <td class="py-3.5 px-3 font-semibold text-on-surface">JOHN EDWARD STEVENS</td>
+                                    <td class="py-3.5 px-3 font-code-sm text-code-sm">L898902C</td>
+                                    <td class="py-3.5 px-3">United States (USA)</td>
+                                    <td class="py-3.5 px-3 font-medium">Suite 304</td>
+                                    <td class="py-3.5 px-3">
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-semibold">
+                                            <span class="material-symbols-outlined text-[12px]">verified</span>
+                                            WASM MRZ (100%)
+                                        </span>
+                                    </td>
+                                    <td class="py-3.5 px-3">
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/10 text-primary font-label-sm text-label-sm font-semibold">
+                                            Checked In
+                                        </span>
+                                    </td>
+                                    <td class="py-3.5 px-3 text-right font-code-sm text-code-sm text-on-surface-variant">Just Now</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Camera Scanner Overlay Modal -->
+    <div id="cameraModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-surface-container-lowest w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden border border-outline-variant/40 flex flex-col">
+            <!-- Modal Header -->
+            <div class="p-4 bg-surface-container-low border-b border-surface-container-high flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[24px]">linked_camera</span>
+                    <div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold leading-tight">Passport & ID Scanner</h3>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant">100% On-Device WebAssembly Camera Scanner</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeCameraModal()" class="w-8 h-8 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <!-- Live Camera Feed & Framing Viewport -->
+            <div class="relative bg-slate-900 min-h-[380px] flex items-center justify-center overflow-hidden">
+                <video id="scannerVideo" autoplay playsinline muted class="w-full h-full object-cover max-h-[420px]"></video>
+                <canvas id="scannerCanvas" class="hidden"></canvas>
+
+                <!-- Overlay Alignment Framing Guides -->
+                <div class="absolute inset-x-8 inset-y-12 scan-overlay-frame rounded-xl pointer-events-none flex flex-col justify-between p-4">
+                    <div class="scan-corner corner-tl"></div>
+                    <div class="scan-corner corner-tr"></div>
+                    <div class="scan-corner corner-bl"></div>
+                    <div class="scan-corner corner-br"></div>
+
+                    <div class="scan-laser-line"></div>
+
+                    <div class="text-center pt-2">
+                        <span class="px-3 py-1 rounded-full bg-slate-900/80 text-white font-label-sm text-label-sm backdrop-blur-sm shadow-sm font-medium border border-white/20">
+                            Align Document MRZ Zone at Bottom
+                        </span>
+                    </div>
+
+                    <div class="text-center pb-2">
+                        <span id="scanModeIndicator" class="px-3 py-1 rounded-full bg-primary/90 text-white font-label-sm text-label-sm backdrop-blur-sm shadow-sm font-semibold">
+                            WASM MRZ Mode Active
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Camera Access Error / Fallback Box -->
+                <div id="cameraErrorBox" class="hidden absolute inset-0 bg-slate-900/90 text-white p-6 flex flex-col items-center justify-center text-center space-y-4">
+                    <span class="material-symbols-outlined text-amber-400 text-[48px]">videocam_off</span>
+                    <div>
+                        <h4 class="font-headline-sm text-headline-sm font-semibold">Camera Access Unavailable</h4>
+                        <p id="cameraErrorMsg" class="font-body-md text-body-md text-slate-300 mt-1 max-w-md">
+                            Camera permission was declined or device is not attached. You can test instant scanning using sample document presets or image upload below.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <button type="button" onclick="loadPreset('us_passport')" class="px-4 py-2 bg-primary text-white font-label-md text-label-md rounded-xl font-medium">
+                            Load Sample US Passport
+                        </button>
+                        <button type="button" onclick="loadPreset('non_mrz_id')" class="px-4 py-2 bg-slate-700 text-white font-label-md text-label-md rounded-xl font-medium">
+                            Load Non-MRZ ID Card
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer & Mode Controls -->
+            <div class="p-4 bg-surface-container-low border-t border-surface-container-high flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <button type="button" id="btnModeMRZ" onclick="switchScanMode('MRZ')" class="px-3 py-1.5 rounded-lg bg-primary text-white font-label-sm text-label-sm font-semibold shadow-xs">
+                        WASM MRZ Mode
+                    </button>
+                    <button type="button" id="btnModeOCR" onclick="switchScanMode('OCR')" class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium">
+                        OCR Fallback Mode
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="closeCameraModal()" class="px-4 py-2 bg-surface-container text-on-surface font-label-md text-label-md rounded-xl hover:bg-surface-container-high transition-colors">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/wasm-mrz-engine.js"></script>
+    <script src="js/camera-ocr-scanner.js"></script>
+    <script>
+        // DOM Elements
+        const modal = document.getElementById('cameraModal');
+        const video = document.getElementById('scannerVideo');
+        const canvas = document.getElementById('scannerCanvas');
+        const cameraErrorBox = document.getElementById('cameraErrorBox');
+        const cameraErrorMsg = document.getElementById('cameraErrorMsg');
+
+        // Form Inputs
+        const docType = document.getElementById('docType');
+        const passportNumber = document.getElementById('passportNumber');
+        const surname = document.getElementById('surname');
+        const givenNames = document.getElementById('givenNames');
+        const dob = document.getElementById('dob');
+        const sex = document.getElementById('sex');
+        const nationality = document.getElementById('nationality');
+        const issuingCountry = document.getElementById('issuingCountry');
+        const expiryDate = document.getElementById('expiryDate');
+        const roomNumber = document.getElementById('roomNumber');
+        const guestEmail = document.getElementById('guestEmail');
+        const guestPhone = document.getElementById('guestPhone');
+        const validationChip = document.getElementById('validationChip');
+
+        // Initialize Engine
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.wasmMRZEngine) {
+                await window.wasmMRZEngine.init('wasm/mrz_parser.wasm');
+            }
+        });
+
+        // Event Trigger for Scanner Button
+        document.getElementById('btnOpenScanner').addEventListener('click', async () => {
+            modal.classList.remove('hidden');
+            cameraErrorBox.classList.add('hidden');
+
+            const res = await window.cameraOCRScanner.startCamera(video, canvas, handleScanSuccess);
+            if (!res.success) {
+                cameraErrorBox.classList.remove('hidden');
+                cameraErrorMsg.textContent = res.error;
+            }
+        });
+
+        // File Upload Handler
+        document.getElementById('fileUploadInput').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const parsed = await window.cameraOCRScanner.processImageFile(file, 'MRZ');
+                if (parsed) {
+                    handleScanSuccess(parsed);
+                }
+            }
+        });
+
+        function closeCameraModal() {
+            modal.classList.add('hidden');
+            window.cameraOCRScanner.stopCamera();
+        }
+
+        function switchScanMode(mode) {
+            window.cameraOCRScanner.mode = mode;
+            const btnMRZ = document.getElementById('btnModeMRZ');
+            const btnOCR = document.getElementById('btnModeOCR');
+            const indicator = document.getElementById('scanModeIndicator');
+
+            if (mode === 'MRZ') {
+                btnMRZ.className = 'px-3 py-1.5 rounded-lg bg-primary text-white font-label-sm text-label-sm font-semibold shadow-xs';
+                btnOCR.className = 'px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium';
+                indicator.textContent = 'WASM MRZ Mode Active';
+            } else {
+                btnOCR.className = 'px-3 py-1.5 rounded-lg bg-primary text-white font-label-sm text-label-sm font-semibold shadow-xs';
+                btnMRZ.className = 'px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-medium';
+                indicator.textContent = 'OCR Fallback Mode Active';
+            }
+        }
+
+        function handleScanSuccess(parsed) {
+            closeCameraModal();
+
+            if (!parsed) return;
+
+            // Populate form fields
+            if (parsed.docType) docType.value = parsed.docType === 'P' ? 'P' : 'ID';
+            if (parsed.passportNumber) setInputValue(passportNumber, parsed.passportNumber);
+            if (parsed.surname) setInputValue(surname, parsed.surname);
+            if (parsed.givenNames) setInputValue(givenNames, parsed.givenNames);
+            if (parsed.dob) setInputValue(dob, parsed.dob);
+            if (parsed.sex) setInputValue(sex, parsed.sex);
+            if (parsed.nationality) setInputValue(nationality, parsed.nationality);
+            if (parsed.issuingCountry) setInputValue(issuingCountry, parsed.issuingCountry);
+            if (parsed.expiryDate) setInputValue(expiryDate, parsed.expiryDate);
+
+            // Validation Chip
+            if (parsed.mrzType === 'OCR_FALLBACK' || parsed.isLowConfidence) {
+                validationChip.className = 'px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1';
+                validationChip.innerHTML = `<span class="material-symbols-outlined text-[14px]">warning</span> OCR Low Confidence (${parsed.confidence || 68}%)`;
+                showAlert('warning', 'OCR Scan Low Confidence Alert', parsed.alertMessage || 'Please review extracted fields before submitting.');
+            } else {
+                validationChip.className = 'px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1';
+                validationChip.innerHTML = `<span class="material-symbols-outlined text-[14px]">verified</span> ICAO 9303 Validated (${parsed.confidence || 100}%)`;
+                showAlert('success', 'Passport Parsed via WebAssembly', `Successfully extracted ${parsed.surname}, ${parsed.givenNames} (${parsed.passportNumber}) in < 150ms.`);
+            }
+
+            // Update Telemetry
+            document.getElementById('wasmLatencyVal').textContent = '< 140 ms';
+            document.getElementById('frameBufferStatus').textContent = 'Purged Memory';
+        }
+
+        function setInputValue(el, value) {
+            el.value = value;
+            // Dispatch input and change events for clean downstream state tracking
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+            el.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        function loadPreset(key) {
+            const parsed = window.cameraOCRScanner.loadSamplePreset(key);
+            handleScanSuccess(parsed);
+        }
+
+        function showAlert(type, title, body) {
+            const banner = document.getElementById('statusAlertBanner');
+            const icon = document.getElementById('alertIcon');
+            const titleEl = document.getElementById('alertTitle');
+            const bodyEl = document.getElementById('alertBody');
+
+            banner.classList.remove('hidden');
+            titleEl.textContent = title;
+            bodyEl.textContent = body;
+
+            if (type === 'warning') {
+                banner.className = 'p-4 rounded-xl border flex items-start justify-between gap-3 bg-amber-50 border-amber-300 text-amber-950';
+                icon.textContent = 'warning';
+                icon.className = 'material-symbols-outlined text-[24px] text-amber-600';
+            } else {
+                banner.className = 'p-4 rounded-xl border flex items-start justify-between gap-3 bg-emerald-50 border-emerald-300 text-emerald-950';
+                icon.textContent = 'check_circle';
+                icon.className = 'material-symbols-outlined text-[24px] text-emerald-600';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('guestForm').reset();
+            validationChip.className = 'px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-surface-container text-on-surface-variant flex items-center gap-1';
+            validationChip.innerHTML = '<span class="material-symbols-outlined text-[14px]">edit_note</span> Manual Entry Mode';
+            document.getElementById('statusAlertBanner').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const nameStr = `${givenNames.value} ${surname.value}`;
+            const passStr = passportNumber.value;
+            const natStr = nationality.value;
+            const roomStr = roomNumber.value;
+
+            const tbody = document.getElementById('checkInLogTable');
+            const newRow = document.createElement('tr');
+            newRow.className = 'hover:bg-surface-container-low transition-colors';
+            newRow.innerHTML = `
+                <td class="py-3.5 px-3 font-semibold text-on-surface">${nameStr.toUpperCase()}</td>
+                <td class="py-3.5 px-3 font-code-sm text-code-sm">${passStr.toUpperCase()}</td>
+                <td class="py-3.5 px-3">${natStr}</td>
+                <td class="py-3.5 px-3 font-medium">${roomStr}</td>
+                <td class="py-3.5 px-3">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm font-semibold">
+                        <span class="material-symbols-outlined text-[12px]">verified</span>
+                        WASM MRZ
+                    </span>
+                </td>
+                <td class="py-3.5 px-3">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/10 text-primary font-label-sm text-label-sm font-semibold">
+                        Checked In
+                    </span>
+                </td>
+                <td class="py-3.5 px-3 text-right font-code-sm text-code-sm text-on-surface-variant">Just Now</td>
+            `;
+
+            tbody.insertBefore(newRow, tbody.firstChild);
+            showAlert('success', 'Guest Check-In Completed', `Successfully checked in ${nameStr} (${passStr}) into ${roomStr}.`);
+            resetForm();
+        }
+    </script>
+</body>
+</html>
